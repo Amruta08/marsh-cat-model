@@ -1,0 +1,27 @@
+# === Used already (Modules 1-2) ===
+numpy==1.26.4
+
+# === Coming in Module 3-4 (hazard + vulnerability) ===
+scipy==1.13.0
+pandas==2.2.2
+
+# === Coming in Module 7 (geospatial) ===
+geopandas==0.14.4
+shapely==2.0.4
+folium==0.16.0
+# Note: geopandas depends on Fiona/GDAL/pyproj under the hood. On Windows,
+# installing via uv/pip pulls prebuilt wheels for these on Python 3.11, so it
+# should work without needing OSGeo4W or a separate GDAL install. If you hit a
+# build error here, that's the first thing to check - flag it and we'll debug.
+
+# === Coming in Module 8 (reporting) ===
+matplotlib==3.8.4
+seaborn==0.13.2
+weasyprint==62.3
+jinja2==3.1.4
+# weasyprint on Windows also needs GTK3 runtime libraries for font/CSS
+# rendering. If module 8's install fails, that's the likely cause - there's a
+# documented Windows installer for this from the WeasyPrint docs and I'll
+# walk you through it when we get there rather than guessing now.
+
+# sqlite3 is Python's standard library - no install needed.

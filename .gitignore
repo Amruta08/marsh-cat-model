@@ -1,0 +1,54 @@
+# --- Python environment & bytecode ---
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# --- Generated database ---
+# portfolio.db is fully reproducible by running the build scripts (that's the
+# whole point of run_all.py). Committing a binary SQLite file to git bloats
+# repo size and diffs terribly on every change - regenerate it, don't version it.
+db/*.db
+
+# --- Raw data ---
+# HURDAT2 is a live NOAA file that gets updated after every hurricane season
+# (notice our filename literally has a Feb 2026 timestamp in it). Committing a
+# frozen copy risks it going stale and silently disagreeing with what someone
+# re-downloads. Ignore the raw file, but document the exact download URL and
+# instructions in the README so the repo is still fully reproducible.
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# --- Generated outputs (intermediate/dev clutter) ---
+# We DO want the final polished deliverables visible in the repo (the hero
+# accumulation map, the final PDF report) since that's what a recruiter or
+# interviewer will actually look at without running any code. But we don't
+# want every intermediate figure generated during development cluttering the
+# repo. Ignore the folders by default, then explicitly un-ignore the specific
+# final files once we know their names in Module 7/8.
+outputs/maps/*
+outputs/figures/*
+outputs/reports/*
+!outputs/**/.gitkeep
+# Once we generate the final hero image and PDF report, add explicit
+# exceptions here, e.g.:
+# !outputs/maps/accumulation_map.png
+# !outputs/reports/loss_report.pdf
+
+# --- IDE / editor ---
+.vscode/
+.idea/
+*.code-workspace
+structure.txt
+
+# --- OS clutter ---
+.DS_Store
+Thumbs.db
+
+# --- Secrets (none currently, but good hygiene) ---
+.env
+
+# --- Jupyter (in case you explore results in a notebook) ---
+.ipynb_checkpoints/
